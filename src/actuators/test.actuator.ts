@@ -11,11 +11,10 @@ interface GetTestByIdArgs {
 class TestActuator {
   async getTests() {
     return await TestModel.find({}).lean();
-
   }
+  
   async getTestById({ id }: GetTestByIdArgs) {
     return await TestModel.findById(id).lean();
-
   }
 
   async createDefaultTest({ description }: CreateDefaultTestArgs) {
@@ -27,7 +26,6 @@ class TestActuator {
       description,
       title: TITLE_DEFAULT
     });
-
   }
 }
 
