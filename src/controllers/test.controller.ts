@@ -17,11 +17,11 @@ class TestController {
     try {
       const { id } = req.params;
 
-      const tests = await testActuator.getTestById({ id });
+      const test = await testActuator.getTestById({ id });
 
-      res.cookie('testId', tests?._id.toString());
+      res.cookie('testId', test?._id.toString());
 
-      return successResponse({ data: tests, res });
+      return successResponse({ data: test, res });
     } catch (error) {
       return errorResponse({ error, res });
     }
