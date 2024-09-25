@@ -5,9 +5,11 @@ const TITLE_DEFAULT = 'TEST ONE';
 interface CreateDefaultTestArgs {
   description?: string;
 }
+
 interface GetTestByIdArgs {
   id?: string;
 }
+
 class TestActuator {
   async getTests() {
     return await TestModel.find({}).lean();
