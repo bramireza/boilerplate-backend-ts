@@ -13,6 +13,30 @@ class TestController {
     }
   }
 
+  async getTestByIdAndSetCookie(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+
+      const test = await testActuator.getTestById({ id });
+
+      res.cookie('testId', test?._id.toString());
+
+      return successResponse({ data: test, res });
+    } catch (error) {
+      return errorResponse({ error, res });
+    }
+  }
+
+  async getCookie (req:Request, res: Response) {
+    try {
+      const cookieTestId = req.cookies.testId;
+    
+      return successResponse({ data: cookieTestId, res });
+    } catch (error) {
+      return errorResponse({ error, res, status: 500 });
+    }
+  }
+
   async createDefaultTest(req: Request, res: Response) {
     try {
       const { description } = req.body;
